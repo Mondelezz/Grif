@@ -7,9 +7,7 @@ namespace GrifMVD.NewsFolder.Models
     public class NewsDb
     {
         public int Id { get; set; }
-        // Заголовок
-        [Required]
-        public string Title { get; set; } = string.Empty;
+        public string Url { get; set; } = string.Empty;
         // Описание
         [Required]
         public string Description { get; set; } = string.Empty;

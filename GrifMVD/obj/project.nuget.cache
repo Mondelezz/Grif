@@ -1,9 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "Tlf65hEHWU+i0tnu/NlesEYsABEQz8xMWJjs6r5X186IYeUduMUEg5quSwLh0d/BFVQLSj+MsiAmh0WeueZJ/g==",
+  "dgSpecHash": "UILbsaKuy9I98w33ZMWgcTuf9HsfufU0/Ok8M9EqW/mLF1ZFK8oJLucDFFsbm65LqAjXnK/d9QHwxW7JDH/gOw==",
   "success": true,
   "projectFilePath": "D:\\СSharp\\GrifMVD\\GrifMVD\\GrifMVD.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\user\\.nuget\\packages\\csvhelper\\30.1.0\\csvhelper.30.1.0.nupkg.sha512",
+    "C:\\Users\\user\\.nuget\\packages\\htmlagilitypack\\1.11.58\\htmlagilitypack.1.11.58.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\microsoft.aspnetcore.openapi\\7.0.1\\microsoft.aspnetcore.openapi.7.0.1.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\microsoft.entityframeworkcore\\7.0.15\\microsoft.entityframeworkcore.7.0.15.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\7.0.15\\microsoft.entityframeworkcore.abstractions.7.0.15.nupkg.sha512",
@@ -25,7 +27,8 @@
     "C:\\Users\\user\\.nuget\\packages\\swashbuckle.aspnetcore\\6.4.0\\swashbuckle.aspnetcore.6.4.0.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.4.0\\swashbuckle.aspnetcore.swagger.6.4.0.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.4.0\\swashbuckle.aspnetcore.swaggergen.6.4.0.nupkg.sha512",
-    "C:\\Users\\user\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\6.4.0\\swashbuckle.aspnetcore.swaggerui.6.4.0.nupkg.sha512"
+    "C:\\Users\\user\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\6.4.0\\swashbuckle.aspnetcore.swaggerui.6.4.0.nupkg.sha512",
+    "C:\\Users\\user\\.nuget\\packages\\system.linq.async\\4.0.0\\system.linq.async.4.0.0.nupkg.sha512"
   ],
   "logs": []
 }
