@@ -8,9 +8,11 @@ namespace GrifMVD.NewsFolder.Models
     {
         public int Id { get; set; }
         public string Url { get; set; } = string.Empty;
-        // Описание
+        // Заголовок
         [Required]
-        public string Description { get; set; } = string.Empty;
+        public string Title { get; set; } = string.Empty;
+        // Описание
+        public string? Description { get; set; } = string.Empty;
         public ICollection<PhotosDb?> Photos { get; set; } = new List<PhotosDb?>();
         // Время полученное путём парсинга
         [Required]

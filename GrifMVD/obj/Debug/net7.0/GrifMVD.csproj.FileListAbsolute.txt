@@ -39,3 +39,4 @@ D:\СSharp\GrifMVD\GrifMVD\obj\Debug\net7.0\refint\GrifMVD.dll
 D:\СSharp\GrifMVD\GrifMVD\obj\Debug\net7.0\GrifMVD.pdb
 D:\СSharp\GrifMVD\GrifMVD\obj\Debug\net7.0\GrifMVD.genruntimeconfig.cache
 D:\СSharp\GrifMVD\GrifMVD\obj\Debug\net7.0\ref\GrifMVD.dll
+D:\СSharp\GrifMVD\GrifMVD\bin\Debug\net7.0\HtmlAgilityPack.CssSelectors.NetCore.dll

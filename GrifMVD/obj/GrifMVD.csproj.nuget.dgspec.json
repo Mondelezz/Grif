@@ -53,6 +53,10 @@
               "target": "Package",
               "version": "[1.11.58, )"
             },
+            "HtmlAgilityPack.CssSelectors.NetCore": {
+              "target": "Package",
+              "version": "[1.2.1, )"
+            },
             "Microsoft.AspNetCore.OpenApi": {
               "target": "Package",
               "version": "[7.0.1, )"

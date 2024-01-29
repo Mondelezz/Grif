@@ -31,6 +31,18 @@
           }
         }
       },
+      "HtmlAgilityPack.CssSelectors.NetCore/1.2.1": {
+        "type": "package",
+        "dependencies": {
+          "HtmlAgilityPack": "1.6.16"
+        },
+        "compile": {
+          "lib/netstandard2.0/HtmlAgilityPack.CssSelectors.NetCore.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/HtmlAgilityPack.CssSelectors.NetCore.dll": {}
+        }
+      },
       "Microsoft.AspNetCore.OpenApi/7.0.1": {
         "type": "package",
         "dependencies": {
@@ -494,6 +506,19 @@
         "lib/uap10.0/HtmlAgilityPack.dll",
         "lib/uap10.0/HtmlAgilityPack.pdb",
         "lib/uap10.0/HtmlAgilityPack.pri"
+      ]
+    },
+    "HtmlAgilityPack.CssSelectors.NetCore/1.2.1": {
+      "sha512": "ES2Ht+wpgaLmyyyCP9cl3AT5U2BtTOCZ2pdFL8GYa27V8IAD9U77KOcuvi61k+nDE4kpU+EjwaBJepVFqLpmGA==",
+      "type": "package",
+      "path": "htmlagilitypack.cssselectors.netcore/1.2.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "htmlagilitypack.cssselectors.netcore.1.2.1.nupkg.sha512",
+        "htmlagilitypack.cssselectors.netcore.nuspec",
+        "lib/netstandard1.5/HtmlAgilityPack.CssSelectors.NetCore.dll",
+        "lib/netstandard2.0/HtmlAgilityPack.CssSelectors.NetCore.dll"
       ]
     },
     "Microsoft.AspNetCore.OpenApi/7.0.1": {
@@ -1262,6 +1287,7 @@
     "net7.0": [
       "CsvHelper >= 30.1.0",
       "HtmlAgilityPack >= 1.11.58",
+      "HtmlAgilityPack.CssSelectors.NetCore >= 1.2.1",
       "Microsoft.AspNetCore.OpenApi >= 7.0.1",
       "Microsoft.EntityFrameworkCore >= 7.0.15",
       "Npgsql.EntityFrameworkCore.PostgreSQL >= 7.0.4",
@@ -1320,6 +1346,10 @@
           "HtmlAgilityPack": {
             "target": "Package",
             "version": "[1.11.58, )"
+          },
+          "HtmlAgilityPack.CssSelectors.NetCore": {
+            "target": "Package",
+            "version": "[1.2.1, )"
           },
           "Microsoft.AspNetCore.OpenApi": {
             "target": "Package",
