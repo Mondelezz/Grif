@@ -16,7 +16,7 @@ namespace GrifMVD.NewsFolder.Controllers
             _scraping = scraping;
         }
         [HttpGet("scrap")]
-        public async Task<ActionResult<ICollection<NewsDb>>> ScrapingWebPage()
+        public async Task<ActionResult<ICollection<NewsDTO>>> ScrapingWebPage()
         {
             var result = await _scraping.ScrapingWebPageAsync();
             if (result != null)

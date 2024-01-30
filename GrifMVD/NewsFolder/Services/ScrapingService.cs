@@ -6,6 +6,7 @@ using CsvHelper;
 using System.Globalization;
 using System.Xml;
 using GrifMVD.NewsFolder.Data;
+using AutoMapper;
 
 namespace GrifMVD.NewsFolder.Services
 {
@@ -13,12 +14,14 @@ namespace GrifMVD.NewsFolder.Services
     {
         private readonly ILogger<ScrapingService> _logger;
         private readonly DataContext _dataContext;
-        public ScrapingService(ILogger<ScrapingService> logger, DataContext dataContext)
+        private readonly IMapper _mapper;
+        public ScrapingService(ILogger<ScrapingService> logger, DataContext dataContext, IMapper mapper)
         {
             _logger = logger;
             _dataContext = dataContext;
+            _mapper = mapper;
         }
-        public async Task<ICollection<NewsDb>> ScrapingWebPageAsync()
+        public async Task<ICollection<NewsDTO>> ScrapingWebPageAsync()
         {
           
             HtmlWeb web = new HtmlWeb();
@@ -102,8 +105,8 @@ namespace GrifMVD.NewsFolder.Services
 
             }
             await _dataContext.SaveChangesAsync();
-            
-            return newsDb;
+            ICollection<NewsDTO> newsDTO = _mapper.Map<ICollection<NewsDTO>>(newsDb);
+            return newsDTO;
         }
     }
 }

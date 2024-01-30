@@ -4,6 +4,6 @@ namespace GrifMVD.NewsFolder.Interfaces
 {
     public interface IScraping
     {
-        public Task<ICollection<NewsDb>> ScrapingWebPageAsync();
+        public Task<ICollection<NewsDTO>> ScrapingWebPageAsync();
     }
 }

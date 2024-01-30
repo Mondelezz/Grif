@@ -8,6 +8,7 @@ namespace GrifMVD.NewsFolder.Mapping
         public MapOptions()
         {
             CreateMap<NewsDb, NewsDTO>().ReverseMap();
+            CreateMap<PhotosDb, PhotosDTO>().ReverseMap();
         }
     }
 }
