@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\СSharp\\GrifMVD\\GrifMVD\\GrifMVD.csproj": {}
+    "D:\\CSharp\\GrifMVD\\GrifMVD\\GrifMVD.csproj": {}
   },
   "projects": {
-    "D:\\СSharp\\GrifMVD\\GrifMVD\\GrifMVD.csproj": {
+    "D:\\CSharp\\GrifMVD\\GrifMVD\\GrifMVD.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\СSharp\\GrifMVD\\GrifMVD\\GrifMVD.csproj",
+        "projectUniqueName": "D:\\CSharp\\GrifMVD\\GrifMVD\\GrifMVD.csproj",
         "projectName": "GrifMVD",
-        "projectPath": "D:\\СSharp\\GrifMVD\\GrifMVD\\GrifMVD.csproj",
+        "projectPath": "D:\\CSharp\\GrifMVD\\GrifMVD\\GrifMVD.csproj",
         "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
-        "outputPath": "D:\\СSharp\\GrifMVD\\GrifMVD\\obj\\",
+        "outputPath": "D:\\CSharp\\GrifMVD\\GrifMVD\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -45,6 +45,14 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "dependencies": {
+            "AutoMapper": {
+              "target": "Package",
+              "version": "[12.0.1, )"
+            },
+            "AutoMapper.Extensions.Microsoft.DependencyInjection": {
+              "target": "Package",
+              "version": "[12.0.1, )"
+            },
             "CsvHelper": {
               "target": "Package",
               "version": "[30.1.0, )"
@@ -62,6 +70,12 @@
               "version": "[7.0.1, )"
             },
             "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[7.0.15, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
               "target": "Package",
               "version": "[7.0.15, )"
             },
