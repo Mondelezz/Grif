@@ -17,6 +17,5 @@ namespace GrifMVD.NewsFolder.Models
         public string? ParseTime { get; set; } = string.Empty; 
         // Время создания
         public DateTime CreatedTime { get; set; }
-
     }
 }
