@@ -7,6 +7,7 @@ using GrifMVD.NewsFolder.Data;
 using AutoMapper;
 using System.Collections.Concurrent;
 using System.Text.RegularExpressions;
+using System.Collections.Generic;
 
 namespace GrifMVD.NewsFolder.Services
 {
@@ -15,6 +16,7 @@ namespace GrifMVD.NewsFolder.Services
         private readonly ILogger<ScrapingService> _logger;
         private readonly DataContext _dataContext;
         private readonly IMapper _mapper;
+        
         public ScrapingService(ILogger<ScrapingService> logger, DataContext dataContext, IMapper mapper)
         {
             _logger = logger;
@@ -37,8 +39,6 @@ namespace GrifMVD.NewsFolder.Services
             ConcurrentBag<string> pagesToScrape = new ConcurrentBag<string>
             {   
                 "https://мосу.мвд.рф/Press-sluzhba/Novosti/1/",
-
-                "https://мосу.мвд.рф/Press-sluzhba/Novosti/2/",
             };
 
             Parallel.ForEach(pagesToScrape, new ParallelOptions { MaxDegreeOfParallelism = 4 }, async currentPage =>
@@ -46,7 +46,7 @@ namespace GrifMVD.NewsFolder.Services
                 HtmlDocument document = web.Load(currentPage);
                 foreach (var producHtmlElements in document.DocumentNode.SelectNodes(".//div[@class='sl-item']"))
                 {
-                    NewsDb newsItem = await ScrapingNewsItemAsync(producHtmlElements);
+                    NewsDb? newsItem = await ScrapingNewsItemAsync(producHtmlElements);
                     if (newsItem != null)
                     {
                         newsDb.Add(newsItem);
@@ -57,7 +57,7 @@ namespace GrifMVD.NewsFolder.Services
             await _dataContext.SaveChangesAsync();
             return newsDb;
         }
-        private async Task<NewsDb> ScrapingNewsItemAsync(HtmlNode productHTMLElement)
+        private async Task<NewsDb?> ScrapingNewsItemAsync(HtmlNode productHTMLElement)
         {
             if (productHTMLElement != null)
             {
@@ -68,6 +68,11 @@ namespace GrifMVD.NewsFolder.Services
                 {
                     HtmlNode aNode = aNodeTitle.SelectSingleNode("a");
                     string url = aNode.GetAttributeValue("href", "");
+                    var result = _dataContext.News.FirstOrDefault(i => i.Url == url);
+                    if (result != null)
+                    {
+                        return null;
+                    }
                     string title = aNode.InnerText.Trim();
                     string description = aNodeDescription.InnerText.Trim();
                     string divTime = aNodeDate.InnerText.Trim();
@@ -84,6 +89,7 @@ namespace GrifMVD.NewsFolder.Services
                         ParseTime = parseTime,
                         CreatedTime = DateTime.UtcNow
                     };
+                    
 
                     _logger.Log(LogLevel.Information,
                         $" Url : {url}" +
@@ -135,105 +141,6 @@ namespace GrifMVD.NewsFolder.Services
             {
                 await csv.WriteRecordsAsync(records);
             }
-        }
-
-         // ДО ОПТИМИЗАЦИИ
-
-        //public async Task<ICollection<NewsDTO>> ScrapingWebPageAsync()
-        //{
-
-        //    HtmlWeb web = new HtmlWeb();
-        //    HtmlDocument document = web.Load("https://мосу.мвд.рф/");
-
-        //    ConcurrentBag<NewsDb> newsDb = new ConcurrentBag<NewsDb>();
-        //    ConcurrentBag<PhotosDb> photosDb = new ConcurrentBag<PhotosDb>();
-
-        //    var pagesToScrape = new ConcurrentBag<string>
-        //    {"https://мосу.мвд.рф/Press-sluzhba/Novosti/1/",
-        //    "https://мосу.мвд.рф/Press-sluzhba/Novosti/2/",};
-        //    Parallel.ForEach(
-        //        pagesToScrape,
-        //        new ParallelOptions { MaxDegreeOfParallelism = 4 },
-        //        currentPage =>
-        //        {
-        //            foreach (var productHTMLElements in document.DocumentNode.SelectNodes(".//div[@class='sl-item']"))
-        //            {
-        //                HtmlNode aNodeDate = productHTMLElements.SelectSingleNode(".//div[@class='sl-item-date']");
-        //                HtmlNode aNodeTitle = productHTMLElements.SelectSingleNode(".//div[@class='sl-item-title']");
-        //                HtmlNode aNodeDescription = productHTMLElements.SelectSingleNode(".//div[@class='sl-item-text']");
-        //                if (productHTMLElements != null && aNodeDate != null && aNodeTitle != null)
-        //                {
-        //                    HtmlNode aNode = aNodeTitle.SelectSingleNode("a");
-        //                    string url = aNode.GetAttributeValue("href", "");
-        //                    string title = aNode.InnerText.Trim();
-        //                    string description = aNodeDescription.InnerText.Trim();
-        //                    string divTime = aNodeDate.InnerText.Trim();
-        //                    string dateText = divTime.Split('<')[0].Trim();
-        //                    string parseTime = "Дата " + dateText;
-
-        //                    NewsDb newDb = new NewsDb()
-        //                    {
-        //                        Id = Guid.NewGuid(),
-        //                        Url = url,
-        //                        Title = title,
-        //                        Description = description,
-        //                        ParseTime = parseTime,
-        //                        CreatedTime = DateTime.UtcNow
-        //                    };
-        //                    _logger.Log(LogLevel.Information,
-        //                        $" Url : {url}" +
-        //                        $"\tTitle : {title}" +
-        //                        $"\tDescription : {description}" +
-        //                        $"\tParseTime : {parseTime}");
-
-        //                    newsDb.Add(newDb);
-
-        //                    using (var writer = new StreamWriter("news-products.csv"))
-        //                    using (var csv = new CsvWriter(writer, CultureInfo.InvariantCulture))
-        //                    {
-        //                        csv.WriteRecords(newsDb);
-        //                    }
-        //                }
-        //                foreach (NewsDb? item in newsDb)
-        //                {
-        //                    HtmlDocument page = web.Load("https://мосу.мвд.рф" + item.Url);
-
-        //                    var imageElements = page.DocumentNode.SelectNodes(".//a[@class='cboxElement']/img");
-
-        //                    if (imageElements != null)
-        //                    {
-        //                        foreach (HtmlNode imageElement in imageElements)
-        //                        {
-        //                            string? imgSrc = imageElement.GetAttributeValue("src", "");
-
-        //                            PhotosDb photoDb = new PhotosDb()
-        //                            {
-        //                                Id = Guid.NewGuid(),
-        //                                UrlImage = imgSrc,
-        //                                NewsDbID = item.Id,
-        //                            };
-
-        //                            photosDb.Add(photoDb);
-        //                            _logger.Log(LogLevel.Information, $" UrlImage : {imgSrc}");
-        //                            item.Photos.Add(photoDb);
-        //                            _dataContext.Photos.AddAsync(photoDb);
-        //                        }
-        //                    }
-
-        //                    _dataContext.News.AddAsync(item);
-        //                }
-
-        //                using (var writer = new StreamWriter("photos-products.csv"))
-        //                using (var csv = new CsvWriter(writer, CultureInfo.InvariantCulture))
-        //                {
-        //                    csv.WriteRecords(photosDb);
-        //                }
-
-        //            }
-        //        });
-        //    await _dataContext.SaveChangesAsync();
-        //    ICollection<NewsDTO> newsDTO = _mapper.Map<ICollection<NewsDTO>>(newsDb);
-        //    return newsDTO;
-        //}
+        }       
     }
 }
