@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace GrifMVD.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20240130163427_test")]
-    partial class test
+    [Migration("20240203133230_test_1")]
+    partial class test_1
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -37,9 +37,8 @@ namespace GrifMVD.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("text");
 
-                    b.Property<string>("ParseTime")
-                        .IsRequired()
-                        .HasColumnType("text");
+                    b.Property<DateTime>("ParseTime")
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("Title")
                         .IsRequired()

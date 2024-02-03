@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace GrifMVD.Migrations
 {
     /// <inheritdoc />
-    public partial class test : Migration
+    public partial class test_1 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -19,7 +19,7 @@ namespace GrifMVD.Migrations
                     Url = table.Column<string>(type: "text", nullable: false),
                     Title = table.Column<string>(type: "text", nullable: false),
                     Description = table.Column<string>(type: "text", nullable: true),
-                    ParseTime = table.Column<string>(type: "text", nullable: false),
+                    ParseTime = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     CreatedTime = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
                 },
                 constraints: table =>

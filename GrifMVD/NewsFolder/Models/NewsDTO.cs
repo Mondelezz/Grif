@@ -6,7 +6,7 @@
         public string Url { get; set; } = string.Empty;
         public string Title { get; set; } = string.Empty;
         public string? Description { get; set; } = string.Empty;
-        public string ParseTime { get; set; } = string.Empty;
+        public DateTime ParseTime { get; set; }
         public ICollection<PhotosDTO?> Photos { get; set; } = new List<PhotosDTO?>();
     }
 }

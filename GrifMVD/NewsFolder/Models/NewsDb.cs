@@ -14,7 +14,7 @@ namespace GrifMVD.NewsFolder.Models
         public ICollection<PhotosDb?> Photos { get; set; } = new List<PhotosDb?>();
         // Время полученное путём парсинга
         [Required]
-        public string? ParseTime { get; set; } = string.Empty; 
+        public DateTime ParseTime { get; set; }
         // Время создания
         public DateTime CreatedTime { get; set; }
     }

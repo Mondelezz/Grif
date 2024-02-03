@@ -7,7 +7,8 @@ using GrifMVD.NewsFolder.Data;
 using AutoMapper;
 using System.Collections.Concurrent;
 using System.Text.RegularExpressions;
-using System.Collections.Generic;
+using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
 
 namespace GrifMVD.NewsFolder.Services
 {
@@ -76,9 +77,28 @@ namespace GrifMVD.NewsFolder.Services
                     string title = aNode.InnerText.Trim();
                     string description = aNodeDescription.InnerText.Trim();
                     string divTime = aNodeDate.InnerText.Trim();
-                    string dateText = divTime.Split('<')[0].Trim().Replace("\r\n", "").TrimEnd('1', '2', '3', '4', '5', '6', '7', '8', '9', '0');
-                    dateText = Regex.Replace(dateText, @"\s+", " ");
-                    string parseTime = "Дата " + dateText;
+                    string dateText = divTime.Split('<')[0].Trim().Replace("\r\n", "").TrimEnd('1', '2', '3', '4', '5', '6', '7', '8', '9', '0', ':');
+                    dateText = Regex.Replace(dateText, @"\s+", " ").Replace("Дата", "");
+
+                    CultureInfo russianCulture = new CultureInfo("ru-RU");
+                    string today = "Сегодня";
+                    int change = dateText.IndexOf(today);
+                    DateTime parsedTime;
+
+                    if (change == 0)
+                    {
+                        dateText = dateText.Replace(today, DateTime.Now.ToString("dd.MM.yyyy"));
+                        dateText = dateText.Trim();
+                        parsedTime = DateTime.ParseExact(dateText, "dd.MM.yyyy HH:mm", russianCulture);
+                        Console.WriteLine(parsedTime);
+                    }
+                    else
+                    {
+                        dateText = dateText.Trim();
+                        parsedTime = DateTime.ParseExact(dateText, "dd MMMM HH:mm", russianCulture);
+                        Console.WriteLine(parsedTime);
+                    }
+
 
                     NewsDb newDb = new NewsDb()
                     {
@@ -86,7 +106,7 @@ namespace GrifMVD.NewsFolder.Services
                         Url = url,
                         Title = title,
                         Description = description,
-                        ParseTime = parseTime,
+                        ParseTime = parsedTime,
                         CreatedTime = DateTime.UtcNow
                     };
                     
@@ -95,7 +115,7 @@ namespace GrifMVD.NewsFolder.Services
                         $" Url : {url}" +
                         $"\tTitle : {title}" +
                         $"\tDescription : {description}" +
-                        $"\tParseTime : {parseTime}");
+                        $"\tParseTime : {parsedTime}");
 
                     await _dataContext.News.AddAsync(newDb);
                     return newDb;                  

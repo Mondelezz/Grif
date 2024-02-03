@@ -34,9 +34,8 @@ namespace GrifMVD.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("text");
 
-                    b.Property<string>("ParseTime")
-                        .IsRequired()
-                        .HasColumnType("text");
+                    b.Property<DateTime>("ParseTime")
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("Title")
                         .IsRequired()
