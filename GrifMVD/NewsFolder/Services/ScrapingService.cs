@@ -29,6 +29,7 @@ namespace GrifMVD.NewsFolder.Services
             await SaveToCsvAsync(newsDb, "news-products.csv");
 
             ICollection<NewsDTO> newsDTO = _mapper.Map<ICollection<NewsDTO>>(newsDb);
+            newsDTO  = newsDTO.OrderByDescending(u => u.ParseTime).ToList();
             return newsDTO;
         }
         private async Task<ConcurrentBag<NewsDb>> ScrapingNewsAsync()
@@ -39,7 +40,6 @@ namespace GrifMVD.NewsFolder.Services
             ConcurrentBag<string> pagesToScrape = new ConcurrentBag<string>
             {   
                 "https://мосу.мвд.рф/Press-sluzhba/Novosti/1/",
-                "https://мосу.мвд.рф/Press-sluzhba/Novosti/2/"
             };
             foreach (var currentPage in pagesToScrape)
             {
