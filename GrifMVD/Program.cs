@@ -11,6 +11,8 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddAutoMapper(typeof(Program).Assembly);
 builder.Services.AddAutoMapper(typeof(MapOptions));
 builder.Services.AddScoped<IScraping, ScrapingService>();
+builder.Services.AddScoped<IHandleDate, DateTreatmentService>();
+builder.Services.AddScoped<DateTreatmentService>();
 builder.Services.AddDbContext<DataContext>(options =>
 {
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"));

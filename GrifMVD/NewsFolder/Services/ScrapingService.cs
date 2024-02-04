@@ -6,23 +6,22 @@ using System.Globalization;
 using GrifMVD.NewsFolder.Data;
 using AutoMapper;
 using System.Collections.Concurrent;
-using System.Text.RegularExpressions;
-using Microsoft.AspNetCore.Http;
-using Microsoft.EntityFrameworkCore;
 
 namespace GrifMVD.NewsFolder.Services
 {
     public class ScrapingService : IScraping
     {
         private readonly ILogger<ScrapingService> _logger;
+        private readonly DateTreatmentService _date;
         private readonly DataContext _dataContext;
         private readonly IMapper _mapper;
         
-        public ScrapingService(ILogger<ScrapingService> logger, DataContext dataContext, IMapper mapper)
+        public ScrapingService(ILogger<ScrapingService> logger, DataContext dataContext, IMapper mapper, DateTreatmentService date)
         {
             _logger = logger;
             _dataContext = dataContext;
             _mapper = mapper;
+            _date = date;
         }
         public async Task<ICollection<NewsDTO>> ScrapingWebPageAsync()
         {
@@ -57,7 +56,7 @@ namespace GrifMVD.NewsFolder.Services
             }
             await _dataContext.SaveChangesAsync();
             return newsDb;
-        }
+        }      
         private async Task<NewsDb?> ScrapingNewsItemAsync(HtmlNode productHTMLElement)
         {
             if (productHTMLElement != null)
@@ -77,27 +76,8 @@ namespace GrifMVD.NewsFolder.Services
                     string title = aNode.InnerText.Trim();
                     string description = aNodeDescription.InnerText.Trim();
                     string divTime = aNodeDate.InnerText.Trim();
-                    string dateText = divTime.Split('<')[0].Trim().Replace("\r\n", "").TrimEnd('1', '2', '3', '4', '5', '6', '7', '8', '9', '0', ':');
-                    dateText = Regex.Replace(dateText, @"\s+", " ").Replace("Дата", "").Replace(" 2023", "");
-                    
-                    CultureInfo russianCulture = new CultureInfo("ru-RU");
-                    string today = "Сегодня";
-                    int change = dateText.IndexOf(today);
-                    DateTime parsedTime;
 
-                    if (change == 0)
-                    {
-                        dateText = dateText.Replace(today, DateTime.Now.ToString("dd.MM.yyyy"));
-                        dateText = dateText.Trim();
-                        parsedTime = DateTime.ParseExact(dateText, "dd.MM.yyyy HH:mm", russianCulture).ToUniversalTime(); ; ; ; ; ;
-                        Console.WriteLine(parsedTime);
-                    }
-                    else
-                    {
-                        dateText = dateText.Trim();
-                        parsedTime = DateTime.ParseExact(dateText, "dd MMMM HH:mm", russianCulture).ToUniversalTime();
-                        Console.WriteLine(parsedTime);
-                    }
+                    DateTime parsedTime = _date.ClearingDate(divTime);
 
 
                     NewsDb newDb = new NewsDb()
