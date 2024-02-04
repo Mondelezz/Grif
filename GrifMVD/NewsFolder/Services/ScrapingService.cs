@@ -40,9 +40,9 @@ namespace GrifMVD.NewsFolder.Services
             ConcurrentBag<string> pagesToScrape = new ConcurrentBag<string>
             {   
                 "https://мосу.мвд.рф/Press-sluzhba/Novosti/1/",
+                "https://мосу.мвд.рф/Press-sluzhba/Novosti/2/"
             };
-
-            Parallel.ForEach(pagesToScrape, new ParallelOptions { MaxDegreeOfParallelism = 4 }, async currentPage =>
+            foreach (var currentPage in pagesToScrape)
             {
                 HtmlDocument document = web.Load(currentPage);
                 foreach (var producHtmlElements in document.DocumentNode.SelectNodes(".//div[@class='sl-item']"))
@@ -54,7 +54,7 @@ namespace GrifMVD.NewsFolder.Services
                         await SavePhotosAsync(newsItem);
                     }
                 }
-            });
+            }
             await _dataContext.SaveChangesAsync();
             return newsDb;
         }
@@ -78,8 +78,8 @@ namespace GrifMVD.NewsFolder.Services
                     string description = aNodeDescription.InnerText.Trim();
                     string divTime = aNodeDate.InnerText.Trim();
                     string dateText = divTime.Split('<')[0].Trim().Replace("\r\n", "").TrimEnd('1', '2', '3', '4', '5', '6', '7', '8', '9', '0', ':');
-                    dateText = Regex.Replace(dateText, @"\s+", " ").Replace("Дата", "");
-
+                    dateText = Regex.Replace(dateText, @"\s+", " ").Replace("Дата", "").Replace(" 2023", "");
+                    
                     CultureInfo russianCulture = new CultureInfo("ru-RU");
                     string today = "Сегодня";
                     int change = dateText.IndexOf(today);
@@ -89,13 +89,13 @@ namespace GrifMVD.NewsFolder.Services
                     {
                         dateText = dateText.Replace(today, DateTime.Now.ToString("dd.MM.yyyy"));
                         dateText = dateText.Trim();
-                        parsedTime = DateTime.ParseExact(dateText, "dd.MM.yyyy HH:mm", russianCulture);
+                        parsedTime = DateTime.ParseExact(dateText, "dd.MM.yyyy HH:mm", russianCulture).ToUniversalTime(); ; ; ; ; ;
                         Console.WriteLine(parsedTime);
                     }
                     else
                     {
                         dateText = dateText.Trim();
-                        parsedTime = DateTime.ParseExact(dateText, "dd MMMM HH:mm", russianCulture);
+                        parsedTime = DateTime.ParseExact(dateText, "dd MMMM HH:mm", russianCulture).ToUniversalTime();
                         Console.WriteLine(parsedTime);
                     }
 
