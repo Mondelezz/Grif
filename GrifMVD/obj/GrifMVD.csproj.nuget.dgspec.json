@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "D:\\CSharp\\GrifMVD\\GrifMVD\\GrifMVD.csproj": {}
+    "B:\\Git\\Grif\\GrifMVD\\GrifMVD.csproj": {}
   },
   "projects": {
-    "D:\\CSharp\\GrifMVD\\GrifMVD\\GrifMVD.csproj": {
+    "B:\\Git\\Grif\\GrifMVD\\GrifMVD.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\CSharp\\GrifMVD\\GrifMVD\\GrifMVD.csproj",
+        "projectUniqueName": "B:\\Git\\Grif\\GrifMVD\\GrifMVD.csproj",
         "projectName": "GrifMVD",
-        "projectPath": "D:\\CSharp\\GrifMVD\\GrifMVD\\GrifMVD.csproj",
+        "projectPath": "B:\\Git\\Grif\\GrifMVD\\GrifMVD.csproj",
         "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
-        "outputPath": "D:\\CSharp\\GrifMVD\\GrifMVD\\obj\\",
+        "outputPath": "B:\\Git\\Grif\\GrifMVD\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+          "B:\\Visual Studio Cache\\NuGetPackages"
         ],
         "configFilePaths": [
           "C:\\Users\\user\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -26,7 +26,6 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -39,6 +38,11 @@
           "warnAsError": [
             "NU1605"
           ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
         }
       },
       "frameworks": {
@@ -79,6 +83,10 @@
               "target": "Package",
               "version": "[7.0.15, )"
             },
+            "Microsoft.VisualStudio.Azure.Containers.Tools.Targets": {
+              "target": "Package",
+              "version": "[1.19.6, )"
+            },
             "Npgsql.EntityFrameworkCore.PostgreSQL": {
               "target": "Package",
               "version": "[7.0.4, )"
@@ -107,7 +115,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.101\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.200\\RuntimeIdentifierGraph.json"
         }
       }
     }

@@ -11,10 +11,11 @@
 using System;
 using System.Reflection;
 
+[assembly: Microsoft.Extensions.Configuration.UserSecrets.UserSecretsIdAttribute("36960984-edb7-4516-a514-fd29a0ac3e39")]
 [assembly: System.Reflection.AssemblyCompanyAttribute("GrifMVD")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+6050985d3b6542147eac88cb9cf0c3413a40406c")]
 [assembly: System.Reflection.AssemblyProductAttribute("GrifMVD")]
 [assembly: System.Reflection.AssemblyTitleAttribute("GrifMVD")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

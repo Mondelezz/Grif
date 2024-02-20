@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "ZQ7EXkiAVDJP2hExh/dcvsIFVSgtwg2HO++g7IBsHtJKOASaqYLwcgNv4FL1ErgYSOSAC8UGRMSYHflHNif/PQ==",
+  "dgSpecHash": "MfvFWsz2jzmlviObiQRTBIZctFecR6z0SAQDiJjNBa8MW63gTKTkxJh9O1W0j6OSg6wrBxmYtHcmFccSRBw7+A==",
   "success": true,
-  "projectFilePath": "D:\\CSharp\\GrifMVD\\GrifMVD\\GrifMVD.csproj",
+  "projectFilePath": "B:\\Git\\Grif\\GrifMVD\\GrifMVD.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\user\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.1\\automapper.extensions.microsoft.dependencyinjection.12.0.1.nupkg.sha512",
@@ -30,6 +30,7 @@
     "C:\\Users\\user\\.nuget\\packages\\microsoft.extensions.options\\7.0.0\\microsoft.extensions.options.7.0.0.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\microsoft.extensions.primitives\\7.0.0\\microsoft.extensions.primitives.7.0.0.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\microsoft.openapi\\1.4.3\\microsoft.openapi.1.4.3.nupkg.sha512",
+    "C:\\Users\\user\\.nuget\\packages\\microsoft.visualstudio.azure.containers.tools.targets\\1.19.6\\microsoft.visualstudio.azure.containers.tools.targets.1.19.6.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\mono.texttemplating\\2.2.1\\mono.texttemplating.2.2.1.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\npgsql\\7.0.4\\npgsql.7.0.4.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\npgsql.entityframeworkcore.postgresql\\7.0.4\\npgsql.entityframeworkcore.postgresql.7.0.4.nupkg.sha512",

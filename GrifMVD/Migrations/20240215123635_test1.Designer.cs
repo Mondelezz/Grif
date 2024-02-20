@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace GrifMVD.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20240203133230_test_1")]
-    partial class test_1
+    [Migration("20240215123635_test1")]
+    partial class test1
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
