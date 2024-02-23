@@ -1882,11 +1882,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "B:\\Git\\Grif\\GrifMVD\\GrifMVD.csproj",
+      "projectUniqueName": "B:\\Git\\Grif\\GrifMVd\\GrifMVD.csproj",
       "projectName": "GrifMVD",
-      "projectPath": "B:\\Git\\Grif\\GrifMVD\\GrifMVD.csproj",
+      "projectPath": "B:\\Git\\Grif\\GrifMVd\\GrifMVD.csproj",
       "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
-      "outputPath": "B:\\Git\\Grif\\GrifMVD\\obj\\",
+      "outputPath": "B:\\Git\\Grif\\GrifMVd\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "B:\\Visual Studio Cache\\NuGetPackages"

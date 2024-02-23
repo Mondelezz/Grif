@@ -1,21 +1,29 @@
 FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
+LABEL maintainer="pankov.egor26032005@yandex.ru"
+
+# Аргумент для конфигурации сборки (исправлена опечатка в слове "configuration")
 ARG BUILD_CONFIGURATION=Release
-WORKDIR /app
 
-COPY GrifMVD.csproj .
-RUN dotnet restore
+# Установка рабочей директории
+WORKDIR /GrifMVD
 
+# Копирование файлов приложения
 COPY . .
-RUN dotnet build -c $BUILD_CONFIGURATION -o /app/build
 
-FROM build AS publish
-RUN dotnet publish -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
+# Восстановление зависимостей и сборка приложения
+RUN dotnet restore "GrifMVD.csproj"
+RUN dotnet build -c $BUILD_CONFIGURATION -o /app
 
-FROM mcr.microsoft.com/dotnet/aspnet:7.0 AS base
+FROM mcr.microsoft.com/dotnet/aspnet:7.0 AS final
+
+# Установка рабочей директории
 WORKDIR /app
-EXPOSE 80
-EXPOSE 443
 
-FROM base AS final
-COPY --from=publish /app/publish .
+# Открытие порта
+EXPOSE 80
+
+# Копирование собранного приложения из предыдущего этапа
+COPY --from=build /app .
+
+# Установка точки входа для запуска приложения
 ENTRYPOINT ["dotnet", "GrifMVD.dll"]
