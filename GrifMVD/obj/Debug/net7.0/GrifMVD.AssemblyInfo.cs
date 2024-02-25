@@ -15,7 +15,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("GrifMVD")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+da41b4c4a766eea30136eb5d30b424e74d4acf86")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4535919999b102bd7721edbb3ede3869398e4b4f")]
 [assembly: System.Reflection.AssemblyProductAttribute("GrifMVD")]
 [assembly: System.Reflection.AssemblyTitleAttribute("GrifMVD")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
